@@ -1,0 +1,11 @@
+<project default="publish" basedir=".">
+    <!-- tools. change paths to where these are on your system -->
+    <property name="src" location="/Users/attach/github/jquery-attach-zoomRow/"/>
+    <property name="build" location="/Applications/MAMP/htdocs/zoomRow/"/>
+    <!-- previews url in browser -->
+    <target name="publish">
+        <copy todir="${build}">
+            <fileset dir="${src}"/>
+        </copy>
+    </target>
+</project>

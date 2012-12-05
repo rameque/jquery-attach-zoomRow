@@ -1,0 +1,195 @@
+<!doctype html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jQuery Attach Design zoomrow</title>
+<meta name="description" content="jQuery Flickr Plugin">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.css">
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="http://code.jquery.com/jquery-1.8.3.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js" type="text/javascript"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"  type="text/javascript"></script>
+<script src="js/jquery.tmpl.min.js" type="text/javascript"></script>
+<script src="js/jquery.attach.zoomrow.js" type="text/javascript"></script>
+<script src="js/jquery.test.js" type="text/javascript"></script>
+<!--[if lt IE 9]> <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+</head>
+<body>
+<div id="sub-header" class="wrapper container">
+  <div class="topbar">
+    <div class="fill">
+      <div class="container"> <a href="#" class="brand">jQuery Attach Design zoomrow</a>
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+        </ul>
+        <div class="pull-right">
+          <ul class="nav">
+            <li class="active"><a href="http://www.attachdesign.com" title="attach design">Made by Attach Design</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-header">
+      <h1>jQuery Plugin - Attach Design zoomrow</h1>
+    </div>
+    <div class="projects"></div>
+    <h3>Example Code</h3>
+    <pre class="prettyprint linenums lang-js">
+var my$ = jQuery.noConflict();
+var myCounterPojects = 0;
+
+my$(document).ready(function(){
+
+  my$.getJSON('js/data.json', function(data) {
+    var projects = data.portfolio.projects;
+    createRow(projects);
+  });
+  
+});
+
+function createRow(projects){
+
+  if(myCounterPojects < projects.length){
+    my$.zrow({
+      items:projects[myCounterPojects].project,
+      onComplete:function(){createRow(projects)},
+      inParallelLoad:false,
+      target:my$('div.projects')
+    });
+
+    myCounterPojects++;
+  }else{
+    return;
+  }
+}
+	</pre>
+  <h3>Example json</h3>
+  <pre class="prettyprint linenums lang-js">
+{
+  "portfolio": 
+    {
+      "projects": [
+        {
+          "project": {
+            "id": "gf-12345692-thmb",
+            "client": {
+              "name": "Google Fiber",
+              "id": "007219873982-909"
+            },
+            "type": "Digital",
+            "name": "Project 1",
+            "pics": {
+              "thumbs": [
+                "http://www.hellomonday.com/images/h93_Fiber_case_01_2012-10-14_14_49_44.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_02_2012-10-14_14_50_38.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_03_2012-10-14_14_51_10.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_04_2012-10-14_14_51_42.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_05_2012-10-14_14_52_13.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_06_2012-10-14_14_52_45.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_07_2012-10-14_14_53_20.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_08_2012-10-14_14_53_56.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_09_2012-10-14_14_55_0.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_10_2012-10-14_15_37_56.png",
+                "http://www.hellomonday.com/images/h93_fiber_case_11_2012-10-14_14_56_37.png"
+              ],
+              "fullSize": [
+                "http://www.hellomonday.com/images/Fiber_case_01_2012-10-14_14_49_56.png",
+                "http://www.hellomonday.com/images/fiber_case_02_2012-10-14_14_50_38.png",
+                "http://www.hellomonday.com/images/fiber_case_03_2012-10-14_14_51_10.png",
+                "http://www.hellomonday.com/images/fiber_case_04_2012-10-14_14_51_42.png",
+                "http://www.hellomonday.com/images/fiber_case_05_2012-10-14_14_52_13.png",
+                "http://www.hellomonday.com/images/fiber_case_06_2012-10-14_14_52_45.png",
+                "http://www.hellomonday.com/images/fiber_case_07_2012-10-14_14_53_20.png",
+                "http://www.hellomonday.com/images/fiber_case_08_2012-10-14_14_53_56.png",
+                "http://www.hellomonday.com/images/fiber_case_09_2012-10-14_14_55_0.png",
+                "http://www.hellomonday.com/images/fiber_case_10_2012-10-14_15_37_56.png",
+                "http://www.hellomonday.com/images/fiber_case_11_2012-10-14_14_56_37.png"
+              ]
+            },
+            "description": {
+              "title": "Say hello to internet from Google",
+              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel lorem dui. Nunc eu purus augue, at blandit lacus. Integer eu mauris in sem pretium rhoncus sed non nunc. Duis ornare suscipit hendrerit. Proin placerat imperdiet sapien vel blandit. Nam pretium, orci et venenatis pulvinar, erat dolor mattis felis, eget ultrices dui elit id metus. Phasellus venenatis iaculis tellus non laoreet. Mauris ante sapien, rutrum sed mollis quis, mattis id neque. Ut sollicitudin turpis sed sapien blandit ut placerat orci scelerisque. Suspendisse tempor euismod orci. Fusce pulvinar, purus vitae bibendum pulvinar, purus ligula vulputate arcu, nec feugiat risus libero id ipsum. Donec molestie vulputate lorem a interdum. Sed in nunc a ligula semper tincidunt nec id dui. Vivamus ultricies dapibus ipsum, varius mollis ligula aliquam et. Proin sollicitudin hendrerit est, eget volutpat nibh fermentum id. Mauris blandit ligula id leo commodo tristique.",
+              "delivarables": "Concept, Design, Development"
+            },
+            "tags": [
+              "design",
+              "development",
+              "concept"
+            ]
+          }
+        },
+        {
+          "project": {
+            "id": "gf-12345693-thmb",
+            "client": {
+              "name": "Google Fiber",
+              "id": "007219873982-909"
+            },
+            "type": "Digital",
+            "name": "Project 2",
+            "pics": {
+              "thumbs": [
+                "http://www.hellomonday.com/images/thumbt_2_14_2009-7-31_16_16_14.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_13_2009-7-31_16_16_6.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_12_2009-7-31_16_15_58.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_11_2009-7-31_16_15_53.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_10_2009-7-31_16_15_45.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_09_2009-7-31_16_15_32.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_08_2009-7-31_16_15_24.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_07_2009-7-31_16_15_8.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_06_2009-7-31_16_15_1.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_05_2009-7-31_16_14_54.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_04_2009-7-31_16_14_45.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_03_2009-7-31_16_14_36.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_02_2009-7-31_16_14_31.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_01_2009-7-31_16_14_25.jpg"
+              ],
+              "fullSize": [
+                "http://www.hellomonday.com/images/thumbt_2_14_2009-7-31_16_16_14.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_13_2009-7-31_16_16_6.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_12_2009-7-31_16_15_58.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_11_2009-7-31_16_15_53.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_10_2009-7-31_16_15_45.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_09_2009-7-31_16_15_32.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_08_2009-7-31_16_15_24.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_07_2009-7-31_16_15_8.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_06_2009-7-31_16_15_1.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_05_2009-7-31_16_14_54.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_04_2009-7-31_16_14_45.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_03_2009-7-31_16_14_36.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_02_2009-7-31_16_14_31.jpg",
+                "http://www.hellomonday.com/images/thumb_t2_01_2009-7-31_16_14_25.jpg"
+              ]
+            },
+            "description": {
+              "title": "Say hello to internet from Google",
+              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel lorem dui. Nunc eu purus augue, at blandit lacus. Integer eu mauris in sem pretium rhoncus sed non nunc. Duis ornare suscipit hendrerit. Proin placerat imperdiet sapien vel blandit. Nam pretium, orci et venenatis pulvinar, erat dolor mattis felis, eget ultrices dui elit id metus. Phasellus venenatis iaculis tellus non laoreet. Mauris ante sapien, rutrum sed mollis quis, mattis id neque. Ut sollicitudin turpis sed sapien blandit ut placerat orci scelerisque. Suspendisse tempor euismod orci. Fusce pulvinar, purus vitae bibendum pulvinar, purus ligula vulputate arcu, nec feugiat risus libero id ipsum. Donec molestie vulputate lorem a interdum. Sed in nunc a ligula semper tincidunt nec id dui. Vivamus ultricies dapibus ipsum, varius mollis ligula aliquam et. Proin sollicitudin hendrerit est, eget volutpat nibh fermentum id. Mauris blandit ligula id leo commodo tristique.",
+              "delivarables": "Concept, Design, Development"
+            },
+            "tags": [
+              "design",
+              "development",
+              "concept"
+            ]
+          }
+        }
+      ]
+    }
+}
+  </pre>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p> Designed and built with love<br/> Attach Design Company : Labs -> <a href="http://www.attachdesign.com">Attach Design Labs</a></p>
+  </div>
+</footer>
+</body>
+</html>
