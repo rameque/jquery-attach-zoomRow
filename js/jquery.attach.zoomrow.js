@@ -20,7 +20,7 @@
 		sizeResource:false,
 		target:$('body'),
 		templateSection: "<section><header><h3>${title}</h3></header><article><div class='content' style='display:none;'></div></article><footer style='display:none;'></footer></section>",
-		templateListImages: "<div class='zoomrow-reel'><ul class='zoomrow-images'>{{each data}}<li class='zoomrow-img'><span class='loading-white zoomrow-loading'/></li>{{/each}}</ul></div>",
+		templateListImages: "<div class='zoomrow-reel'><ul class='zoomrow-images'>{{each data}}<li class='zoomrow-img'><div><span class='loading-white zoomrow-loading'/></div></li>{{/each}}</ul></div>",
 		templateImage: "{{if status === 'success'}}<img src='${file.src}' name='' class='zoomrow-image zoomrow-blind' alt='${file.name}' srchd='${file.srchd}'/>{{else}} <span class='zoomrow-notFound'/> {{/if}}"
 	}
 	
@@ -188,7 +188,7 @@
 		complete:function(){
 			var section = $.zoomrow.private.settings._section;
 			$.template( "image", $.zoomrow.settings.templateImage);
-			$('.zoomrow-img',section).each(function(index, value){
+			$('.zoomrow-img div',section).each(function(index, value){
 				var responseHTML = $.tmpl('image',$.zoomrow.private.settings._finalQueue[index]);
 				var _this = $(this);
 
